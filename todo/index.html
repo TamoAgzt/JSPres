@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css" />
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <div id="popup-container">
+      <div class="popup-content">
+        <h2>Hallo</h2>
+        <p>Het is ik!</p>
+        <button onclick="togglePopUp()">Afsluiten</button>
+      </div>
+      <div onclick="togglePopUp()" id="overlay"></div>
+    </div>
+    <div class="toggle_btn">
+      <!-- Class rond button voor extra styling vrijheid -->
+      <p><button onclick="togglePopUp()">Klik mij</button> voor een popup.</p>
+    </div>
+
+    <div id="dot"></div>
+  </body>
+</html>
+
+<script>
+  // Stap 1 Variabelen aangeven
+  let isOn = false;
+  const interval = 500;
+
+  // Stap 2 Roep de popup container aan (ook als variabele)
+  const popup = document.getElementById('popup-container');
+  const overlay = document.getElementById('overlay');
+
+  // Adjust the timing in miliseconds
+  popup.style.transition = 'all ' + interval + 'ms';
+
+  function togglePopUp() {
+    // Kortste manier voor boolean toggle
+    isOn = !isOn;
+    if (isOn) {
+      // Make visible with display : flex
+      popup.style.display = 'flex';
+
+      // Make it pop in
+      popup.style.transform = 'scale(1)';
+
+      // Make overlay visible with display : block
+      overlay.style.display = 'block';
+    } else {
+      // Make invisible with display : none
+      popup.style.transform = 'scale(0)';
+      overlay.style.display = 'none';
+    }
+  }
+</script>
+
+<script>
+  // Variabelen aangeven
+  let y; // Verticaal as van boven
+  let x; // Horizontaal as van links
+  let maxY = 600;
+  let maxX = 1000;
+  const dotInterval = 1000;
+  const backgroundDot = document.getElementById('dot');
+
+  let inter;
+
+  // place to starting position
+  backgroundDot.style.top = y + 'px';
+  backgroundDot.style.left = x + 'px';
+  repeat();
+
+  function move() {
+    let y = Math.floor(Math.random() * maxY); // Verticaal as van boven
+    let x = Math.floor(Math.random() * maxX); // Horizontaal as van links
+    console.log(y, x);
+
+    backgroundDot.style.top = y + 'px';
+    backgroundDot.style.left = x + 'px';
+    backgroundDot.style.transition = 'all ' + dotInterval + 'ms ease-in-out';
+  }
+
+  function repeat() {
+    if (!inter) {
+      setInterval(move, dotInterval);
+    }
+  }
+
+  function stopTextColor() {
+    clearInterval(inter);
+    inter = null;
+  }
+</script>
