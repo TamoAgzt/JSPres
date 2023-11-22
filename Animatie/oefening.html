@@ -6,19 +6,40 @@
     <title>Document</title>
     <link rel="stylesheet" href="oefening.css" />
   </head>
-  <body></body>
+  <body>
+    <button onclick="togglePopup()">Klik</button>
+
+    <div id="popup-container">
+      <div class="popup-content">
+        <h2>hoi</h2>
+        <p>text</p>
+        <button onclick="togglePopup()">close</button>
+      </div>
+
+      <div id="overlay"></div>
+    </div>
+  </body>
 </html>
 
 <script>
   // Stap 1 Variabelen aangeven
-
-  // const timer = 5;
-
+  let popOpen = false;
   // Stap 2 Roep de popup container aan
+  let popup = document.getElementById('popup-container');
 
-  // Kortste manier voor boolean toggle
+  togglePopup();
 
-  // Make visible with display : box
+  function togglePopup() {
+    // Kortste manier voor boolean toggle
+    popOpen = !popOpen;
+    console.log(popOpen);
 
-  // Make invisible with display : none
+    // Make visible with display : box
+    if (popOpen) {
+      popup.style.display = 'block';
+    } else {
+      popup.style.display = 'none';
+    }
+    // Make invisible with display : none
+  }
 </script>
